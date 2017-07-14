@@ -19,63 +19,63 @@ using namespace std;
 
 // define
 #ifndef numTask
-#define numTask			10	// number of Tasks, task 0, 1, ...
+#define numTask				10		// number of Tasks, task 0, 1, ...
 #endif
 
 #ifndef numMachine
-#define numMachine		10	// number of Machines, machine 0, 1, ...,		criteria: <=1000
+#define numMachine			10		// number of Machines, machine 0, 1, ...,		criteria: <=1000
 #endif
 
 #ifndef sizePop
-#define sizePop			1024 	// size of population
+#define sizePop				1024 	// size of population
 #endif
 
-#define edgeSizePop		64	// edge of population
+#define edgeSizePop			64		// edge of population
 
 #ifndef generation
-#define	generation		1000	// number of generations
+#define	generation			1000	// number of generations
 #endif
 
 #define timeStopGa  		3600	// thoi gian toi da chay giai thuat ga, tinh bang giay
-#define maxCost			1000	// max cost excuting task, use in random create
-#define minCost			13	// min cost //
+#define maxCost				1000	// max cost excuting task, use in random create
+#define minCost				13		// min cost //
 
 #ifndef rateMutan
-#define rateMutan		0.005	// rate of mutation is 0.5%
+#define rateMutan			0.005	// rate of mutation is 0.5%
 #endif
 
-#define blockSize		16	// threads per block
+#define blockSize			16		// threads per block
 #define threadsPerBlock  	256
-#define locateIndex		8	// index of locate, use to recombine
-#define rateRe			8	// so hang xom cua 1 thread
+#define locateIndex			8		// index of locate, use to recombine
+#define rateRe				8		// so hang xom cua 1 thread
 
-#define TaskCore		0
-#define TaskMips		1
-#define TaskMemory		2
-#define TaskStorage		3
-#define TaskNetwork		4
+#define TaskCore			0
+#define TaskMips			1
+#define TaskMemory			2
+#define TaskStorage			3
+#define TaskNetwork			4
 #define TaskStartTime 		5
 #define TaskDuration 		6
 
 #define MachineMipsPerCore	0
-#define MachineCore		1
+#define MachineCore			1
 #define MachinePower		2
 #define MachineBasePower	3
 #define MachineMemory		4
 #define MachineStorage		5
 #define MachineNetwork		6
 
-#define MAX_FIELD 		8
-#define ID			0
-#define CORES 			1
-#define MIPS 			2
-#define MEMORY 			3
-#define STORAGE 		4
-#define NETWORK 		5
+#define MAX_FIELD 			8
+#define ID					0
+#define CORES 				1
+#define MIPS 				2
+#define MEMORY 				3
+#define STORAGE 			4
+#define NETWORK 			5
 #define TASK_START_TIME 	6
-#define DURATION 		7
-#define MAX_POWER 		6
-#define BASE_POWER 		7
+#define DURATION 			7
+#define MAX_POWER 			6
+#define BASE_POWER 			7
 
 #define COMMENT		";"
 #define outfile		"nst.txt"
