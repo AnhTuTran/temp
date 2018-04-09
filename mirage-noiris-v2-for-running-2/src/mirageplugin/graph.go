@@ -20,11 +20,18 @@ type Graph_t struct {
 	clients         []*graph.Client_t
 	router          Router
 	spectrumManager *SpectrumManager_t
-	model           DecodeModel
+	// TU
+	separatorRanks *SeparatorRanks_t
+	model          DecodeModel
 }
 
 func (g *Graph_t) SpectrumManager() graph.SpectrumManager {
 	return g.spectrumManager
+}
+
+// TU
+func (g *Graph_t) SeparatorRanks() graph.SeparatorRanks {
+	return g.separatorRanks
 }
 
 func (g *Graph_t) LibrarySize() int {
@@ -115,6 +122,11 @@ func newNode(id string, entity interface{}) *Node_t {
 	node.outputLinks = make([]*UnidirectionalLink_t, 0)
 	node.inputLinks = make([]*UnidirectionalLink_t, 0)
 	return node
+}
+
+// TU
+func (g *Graph_t) initSeparatorRanks() {
+	g.separatorRanks = newSeparatorRanks(g)
 }
 
 func (g *Graph_t) initSpectrums() {

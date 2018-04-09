@@ -204,6 +204,9 @@ func loadModel(graphDecodeModel DecodeModel) *Graph_t {
 		network.initSpectrums()
 	}
 
+	// TU
+	network.initSeparatorRanks()
+
 	return network
 }
 

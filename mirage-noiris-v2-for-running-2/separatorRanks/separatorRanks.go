@@ -2,8 +2,14 @@ package main
 
 import (
 	"fmt"
+	graphLoader "graph/loader"
 	"math"
+	"math/rand"
+	"os"
+	"parser"
 	"reflect"
+	"time"
+	"utils"
 )
 
 func isTwoArraysDiff(a, b []int) bool {
@@ -58,24 +64,32 @@ func estimate_traffic(S_tmp []int) int {
 	return traffic
 }
 
-func main() {
-	// if parser.Options.GraphFilename == "" {
-	// 	utils.DebugPrint(fmt.Sprintln("Please specify graph filename."))
-	// 	parser.PrintDefaults()
-	// 	os.Exit(1)
-	// }
+func init() {
+	parser.ParseArgs()
+	rand.Seed(int64(time.Now().Nanosecond()))
+}
 
-	// network, _ := graphLoader.LoadGraph(parser.Options.GraphFilename)
-	// warmupRequestCount := parser.Options.WarmupRequestCount
-	// evaluationRequestCount := parser.Options.EvaluationRequestCount
+func main() {
+	if parser.Options.GraphFilename == "" {
+		utils.DebugPrint(fmt.Sprintln("Please specify graph filename."))
+		parser.PrintDefaults()
+		os.Exit(1)
+	}
+
+	network, _ := graphLoader.LoadGraph(parser.Options.GraphFilename)
+	warmupRequestCount := parser.Options.WarmupRequestCount
+	//evaluationRequestCount := parser.Options.EvaluationRequestCount
 
 	// generate requests for warming up
-	// for index := 0; index < warmupRequestCount; index++ {
-	// 	utils.DebugPrint(fmt.Sprintf("\rwarming up: (%d/%d)", index+1, warmupRequestCount))
-	// 	for _, client := range network.Clients() {
-	// 		client.RandomRequest()
-	// 	}
-	// }
+	for index := 0; index < warmupRequestCount; index++ {
+		utils.DebugPrint(fmt.Sprintf("\rwarming up: (%d/%d)", index+1, warmupRequestCount))
+		for _, client := range network.Clients() {
+			client.RandomRequest()
+		}
+	}
+
+	fmt.Println(reflect.TypeOf(network))
+	//fmt.Println(network.(Graph_t))
 
 	N := 4   // # colors
 	C := 100 // cache server capacity

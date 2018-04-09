@@ -75,6 +75,9 @@ func main() {
 		}
 	}
 
+	// TU
+	network.SeparatorRanks().GetSeparatorRanks()
+
 	utils.DebugPrint(fmt.Sprintln())
 	network.ResetCounters()
 

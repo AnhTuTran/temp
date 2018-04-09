@@ -16,6 +16,8 @@ type Graph interface {
 	Links() []UnidirectionalLink
 	OriginServers() []Node
 	SpectrumCapacity() int
+	//TU
+	SeparatorRanks() SeparatorRanks
 }
 
 type Client interface {
@@ -27,6 +29,11 @@ type SpectrumManager interface {
 	BestSeparatorRanks([]int) []int
 	BestReferenceRanks(utils.MirageStore) []int
 	SetContentSpectrums([]int)
+}
+
+//TU
+type SeparatorRanks interface {
+	GetSeparatorRanks()
 }
 
 type ServerModel interface {
