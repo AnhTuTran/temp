@@ -70,9 +70,9 @@ func main() {
 	// generate requests for warming up
 	for index := 0; index < warmupRequestCount; index++ {
 		utils.DebugPrint(fmt.Sprintf("\rwarming up: (%d/%d)", index+1, warmupRequestCount))
-		for _, client := range network.Clients() {
-			client.RandomRequest()
-		}
+		// for _, client := range network.Clients() {
+		// 	client.RandomRequest()
+		// }
 	}
 
 	// TU

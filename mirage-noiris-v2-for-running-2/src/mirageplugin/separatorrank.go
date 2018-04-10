@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"reflect"
 )
 
 // TU ALL
@@ -66,18 +65,10 @@ func (separatorranks *SeparatorRanks_t) estimate_traffic(S_tmp []int,
 	routingTable := separatorranks.network.router.(*Router_t).routingTable
 	graph := separatorranks.network
 
-	fmt.Println("Empty")
-	fmt.Println(routingTable["node1"]["node1"])
-	// src := graph.clients[1].Upstream().ID()
-	// des := graph.nodes[0].id
-	// fmt.Println(src)
-	// fmt.Println(graph.nodes)
-
 	dist := graph.clients[0].Dist()
 
 	for i := 0; i < numUsrs; i++ {
 		for j := 0; j < numServers; j++ {
-			fmt.Printf("i %d j %d\n", i, j)
 			src := graph.clients[i].Upstream().ID()
 			des := graph.nodes[j].id
 			tmp := routingTable[src][des]
@@ -85,21 +76,21 @@ func (separatorranks *SeparatorRanks_t) estimate_traffic(S_tmp []int,
 			if len(tmp) == 0 {
 				cost = 1.0
 			} else {
-				cost = tmp[0].Cost()
+				cost = tmp[0].Cost() + 1
 			}
 			for k := 0; k < numContents; k++ {
-				//nearest_server := src
 				bin_var := 0.0
 				if graph.clients[i].Upstream().Storage().Exist(k + 1) {
 					bin_var = 1.0
+				} else {
+					graph.clients[i].Upstream().Storage().Insert(k+1, k+1)
 				}
 
 				traffic += cost * dist.PDF(k+1) * bin_var
-				// fmt.Printf("k %d\n", k)
+				//fmt.Println(cost * dist.PDF(k+1) * bin_var)
 			}
 		}
 	}
-	fmt.Println(traffic)
 	return traffic
 }
 
@@ -110,12 +101,12 @@ func newSeparatorRanks(network *Graph_t) *SeparatorRanks_t {
 }
 
 func (separatorranks *SeparatorRanks_t) GetSeparatorRanks() {
-	fmt.Println("XXXX")
+	//fmt.Println("XXXX")
 	//fmt.Println(separatorranks.network.router.(*Router_t).routingTable)
-	fmt.Println("XXXX")
+	//fmt.Println("XXXX")
 
 	//routingTable := separatorranks.network.router.(*Router_t).routingTable
-	separatorranks.network.router.(*Router_t).inspectAllRoutingTables()
+	//separatorranks.network.router.(*Router_t).inspectAllRoutingTables()
 
 	// for i := range routingTable {
 	// 	fmt.Println(routingTable[i])
@@ -131,13 +122,17 @@ func (separatorranks *SeparatorRanks_t) GetSeparatorRanks() {
 	// nextNode = routingTable["node3"]["origin"][0].Node().(*Node_t).id
 	// fmt.Println(routingTable[nextNode]["origin"][0].Node())
 
+	// separatorranks.network.clients[0].Upstream().Storage().(*modifiedlru.CacheStorage).Inspect()
+
+	//test()
+
 	N := 4   // # colors
 	C := 100 // cache server capacity
 	numUsrs := len(separatorranks.network.clients)
 	numServers := len(separatorranks.network.nodes)
 	numContents := separatorranks.network.LibrarySize()
 
-	fmt.Println("XXXX")
+	fmt.Println("\nnumUsrs numServers numContents")
 	fmt.Println(numUsrs)
 	fmt.Println(numServers)
 	fmt.Println(numContents)
@@ -147,7 +142,7 @@ func (separatorranks *SeparatorRanks_t) GetSeparatorRanks() {
 	var S_tmp []int
 	T_min := math.MaxFloat64
 
-	fmt.Println(reflect.TypeOf(T_min))
+	//fmt.Println(reflect.TypeOf(T_min))
 
 	S[N-1] = N * C
 	fmt.Println(S)
@@ -161,14 +156,18 @@ func (separatorranks *SeparatorRanks_t) GetSeparatorRanks() {
 				S_tmp = getValues(S)
 				S_tmp[i] = v
 				S_tmp[N-1] = calculateTail(S_tmp, N, C)
-			}
-			T_est := separatorranks.estimate_traffic(S_tmp, numUsrs, numServers, numContents)
-			if T_est < T_min {
-				T_min = T_est
-				S = getValues(S_tmp)
+				T_est := separatorranks.estimate_traffic(S_tmp, numUsrs, numServers, numContents)
+				if T_est < T_min {
+					T_min = T_est
+					S = getValues(S_tmp)
+				}
 			}
 		}
 	}
-
 	fmt.Println(S)
+}
+
+func test() {
+	fmt.Println("Testing")
+
 }
