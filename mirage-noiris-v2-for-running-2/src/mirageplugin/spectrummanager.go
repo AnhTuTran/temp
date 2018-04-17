@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
 	"sort"
 	"utils"
@@ -115,7 +116,56 @@ func (manager *SpectrumManager_t) countSpectrums(spectrum []uint64) int {
 }
 
 func (manager *SpectrumManager_t) selectDistantSpectrum(srcNode *Node_t, availableSpectrums []uint64) uint64 {
-	return 0
+	// array stores minimal distance to node with available colors
+	distances := make([]int, len(availableSpectrums))
+	for i := range distances {
+		distances[i] = -1 // distance value not found
+	}
+	// list to do BFS
+	list := list.New()
+	hopcount := 1
+
+	for i := 0; i < len(srcNode.outputLinks); i++ {
+		list.PushBack(srcNode.outputLinks[i].dst)
+		list.PushBack(hopcount)
+	}
+
+	// fmt.Println(ele.Value)
+	for !isAllElePositive(distances) {
+		isInAvaiSpectrums := true
+
+		node := list.Remove(list.Front()).(*Node_t)
+		//fmt.Println(node.id)
+		distance := list.Remove(list.Front()).(int)
+		nodeColor, exist := manager.serverSpectrums[node]
+		if exist {
+			for i := 0; i < len(availableSpectrums); i++ {
+				if nodeColor == availableSpectrums[i] {
+					distances[i] = distance
+					break
+				}
+			}
+			isInAvaiSpectrums = false
+		}
+
+		if !exist || !isInAvaiSpectrums {
+			hopcount++
+			for i := 0; i < len(node.outputLinks); i++ {
+				list.PushBack(node.outputLinks[i].dst)
+				list.PushBack(hopcount)
+			}
+		}
+
+	}
+	minDistance := distances[0]
+	selectedColor := availableSpectrums[0]
+	for i := 0; i < len(availableSpectrums); i++ {
+		if distances[i] < minDistance {
+			minDistance = distances[i]
+			selectedColor = availableSpectrums[i]
+		}
+	}
+	return selectedColor
 }
 
 func (manager *SpectrumManager_t) setServerSpectrums() {
@@ -132,7 +182,13 @@ func (manager *SpectrumManager_t) setServerSpectrums() {
 	for i := range verticesDegrees {
 		availableSpectrums := manager.availableSpectrums(verticesDegrees[i].node)
 		// missing sort descendingly based on minimal distance
-		manager.serverSpectrums[verticesDegrees[i].node] = availableSpectrums[0]
+		selectedColor := uint64(manager.bitSize)
+		if i >= manager.bitSize {
+			selectedColor = manager.selectDistantSpectrum(verticesDegrees[i].node, availableSpectrums)
+		} else {
+			selectedColor = manager.baseSpectrums[i].(uint64)
+		}
+		manager.serverSpectrums[verticesDegrees[i].node] = selectedColor
 	}
 	fmt.Println("\nServers' color")
 	for _, node := range manager.network.nodes {
@@ -150,4 +206,18 @@ func (manager *SpectrumManager_t) SetContentSpectrums(separatorRanks []int) {
 type vertexDegree struct {
 	node   *Node_t
 	degree uint64
+}
+
+// type listElement {
+// 	node *Node_t
+// 	distance int
+// }
+
+func isAllElePositive(array []int) bool {
+	for _, v := range array {
+		if v <= 0 {
+			return false
+		}
+	}
+	return true
 }
