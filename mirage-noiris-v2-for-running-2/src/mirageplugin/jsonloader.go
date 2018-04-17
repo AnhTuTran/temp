@@ -17,6 +17,7 @@ import "cache/eviction/modifiedlru"
 import "cache/eviction/admission"
 import "cache/eviction/iclfu"
 import "cache/eviction/windowlfu" //TU
+import "cache/eviction/nocache"   //TU
 
 import "distribution"
 import "distribution/gamma"
@@ -127,6 +128,8 @@ func (g *Graph_t) loadCacheServers(graphDecodeModel DecodeModel) {
 			storage = admission.New(admissionList)
 		case "iris":
 			storage = NewIrisCache(int(params["Capacity"]), params["SpectrumRatio"])
+		case "nocache": // TU add
+			storage = nocache.New(int(params["Capacity"]))
 		}
 		edgeServer.setStorage(storage)
 		edgeServer.setUpstreamRouter(g.router)
