@@ -1,0 +1,297 @@
+Starting job configuration: '8-nodes-28-ppn'
+
+Connected to NOWLAB MongoDB.
+['gpu01', 'gpu05', 'gpu06', 'gpu12', 'gpu17', 'gpu18', 'storage04', 'storage05']
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=1 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce -m 1:2048
+4		15.47
+8		11.41
+16		9.80
+32		13.17
+64		11.31
+128		22.03
+256		15.07
+512		15.70
+1024		21.49
+2048		25.04
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=2 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		17.67
+8		13.87
+16		13.90
+32		10.12
+64		11.67
+128		11.79
+256		15.30
+512		27.69
+1024		27.55
+2048		29.29
+4096		31.16
+8192		41.72
+16384		59.93
+32768		94.63
+65536		160.83
+131072		250.00
+262144		529.44
+524288		928.34
+1048576		2089.10
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=1 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=1 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce -m 1:2048
+4		11.32
+8		8.49
+16		8.20
+32		8.41
+64		8.88
+128		10.86
+256		13.51
+512		14.11
+1024		20.53
+2048		20.92
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_ENABLE_SOCKET_AWARE_COLLECTIVES=1 MV2_INTER_ALLREDUCE_TUNING=11 MV2_SMP_USE_CMA=1 MV2_SOCKET_AWARE_ALLREDUCE_MAX_MSG=$((1024*1024)) MV2_USE_RDMA_CM=0 MV2_USE_SOCKET_AWARE_ALLREDUCE=1 MV2_USE_SOCKET_AWARE_BARRIER=1 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce -m 1:1048576
+Process returned code: 1
+
+# OSU MPI Allreduce Latency Test v5.7
+# Size       Avg Latency(us)
+4                       6.80
+8                       6.53
+16                      7.02
+32                      6.82
+64                      7.59
+128                     8.22
+256                    13.61
+512                     9.98
+1024                   14.53
+2048                   18.23
+4096                   22.81
+8192                   39.50
+
+[gpu01.cluster:mpi_rank_0][rdma_param_handle_heterogeneity] All nodes involved in the job were detected to be homogeneous in terms of processors and interconnects. Setting MV2_HOMOGENEOUS_CLUSTER=1 can improve job startup performance on such systems. The following link has more details on enhancing job startup performance. http://mvapich.cse.ohio-state.edu/performance/job-startup/.
+[gpu01.cluster:mpi_rank_0][rdma_param_handle_heterogeneity] To suppress this warning, please set MV2_SUPPRESS_JOB_STARTUP_PERFORMANCE_WARNING to 1
+[gpu01.cluster:mpi_rank_13][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu01.cluster:mpi_rank_27][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu06.cluster:mpi_rank_69][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu06.cluster:mpi_rank_83][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu05.cluster:mpi_rank_55][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu05.cluster:mpi_rank_41][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu18.cluster:mpi_rank_167][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu18.cluster:mpi_rank_153][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu17.cluster:mpi_rank_139][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu17.cluster:mpi_rank_125][error_sighandler] Caught error: Segmentation fault (signal 11)
+[storage04.cluster:mpi_rank_195][error_sighandler] Caught error: Segmentation fault (signal 11)
+[storage04.cluster:mpi_rank_181][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu12.cluster:mpi_rank_111][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu12.cluster:mpi_rank_97][error_sighandler] Caught error: Segmentation fault (signal 11)
+[storage05.cluster:mpi_rank_209][error_sighandler] Caught error: Segmentation fault (signal 11)
+[storage05.cluster:mpi_rank_223][error_sighandler] Caught error: Segmentation fault (signal 11)
+[gpu18.cluster:mpispawn_5][readline] Unexpected End-Of-File on file descriptor 31. MPI process died?
+[gpu18.cluster:mpispawn_5][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[gpu12.cluster:mpispawn_3][readline] Unexpected End-Of-File on file descriptor 17. MPI process died?
+[gpu12.cluster:mpispawn_3][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[gpu17.cluster:mpispawn_4][readline] Unexpected End-Of-File on file descriptor 19. MPI process died?
+[gpu17.cluster:mpispawn_4][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[gpu05.cluster:mpispawn_1][readline] Unexpected End-Of-File on file descriptor 26. MPI process died?
+[gpu05.cluster:mpispawn_1][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[gpu01.cluster:mpispawn_0][readline] Unexpected End-Of-File on file descriptor 34. MPI process died?
+[gpu01.cluster:mpispawn_0][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[gpu06.cluster:mpispawn_2][readline] Unexpected End-Of-File on file descriptor 19. MPI process died?
+[gpu06.cluster:mpispawn_2][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[gpu17.cluster:mpispawn_4][child_handler] MPI process (rank: 125, pid: 29288) terminated with signal 11 -> abort job
+[gpu05.cluster:mpispawn_1][child_handler] MPI process (rank: 41, pid: 30234) terminated with signal 11 -> abort job
+[gpu18.cluster:mpispawn_5][child_handler] MPI process (rank: 153, pid: 25151) terminated with signal 11 -> abort job
+[gpu01.cluster:mpispawn_0][child_handler] MPI process (rank: 13, pid: 20196) terminated with signal 11 -> abort job
+[gpu06.cluster:mpispawn_2][child_handler] MPI process (rank: 69, pid: 13139) terminated with signal 11 -> abort job
+[gpu12.cluster:mpispawn_3][child_handler] MPI process (rank: 97, pid: 7810) terminated with signal 11 -> abort job
+[storage04.cluster:mpispawn_6][readline] Unexpected End-Of-File on file descriptor 29. MPI process died?
+[storage04.cluster:mpispawn_6][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[storage04.cluster:mpispawn_6][child_handler] MPI process (rank: 195, pid: 15318) terminated with signal 11 -> abort job
+[storage05.cluster:mpispawn_7][readline] Unexpected End-Of-File on file descriptor 17. MPI process died?
+[storage05.cluster:mpispawn_7][mtpmi_processops] Error while reading PMI socket. MPI process died?
+[storage05.cluster:mpispawn_7][child_handler] MPI process (rank: 209, pid: 3857) terminated with signal 11 -> abort job
+[gpu01.cluster:mpirun_rsh][process_mpispawn_connection] mpispawn_2 from node gpu06 aborted: Error while reading a PMI socket (4)
+
+This method requires Benchmark to be run() first. Was there an error?
+Continuing
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=1 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=2 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		11.35
+8		8.93
+16		8.20
+32		8.87
+64		9.78
+128		17.67
+256		11.69
+512		15.97
+1024		15.89
+2048		18.90
+4096		26.32
+8192		47.14
+16384		79.91
+32768		126.17
+65536		221.74
+131072		432.96
+262144		793.63
+524288		1550.49
+1048576		4418.82
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=8 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		14.23
+8		9.96
+16		10.57
+32		10.10
+64		10.66
+128		18.04
+256		20.89
+512		32.65
+1024		52.05
+2048		48.53
+4096		51.77
+8192		73.61
+16384		132.44
+32768		208.38
+65536		473.14
+131072		708.65
+262144		620.69
+524288		864.95
+1048576		1245.63
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=9 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		14.51
+8		10.24
+16		10.15
+32		10.14
+64		10.71
+128		17.28
+256		22.14
+512		32.45
+1024		430.10
+2048		408.17
+4096		316.08
+8192		335.45
+16384		377.84
+32768		353.41
+65536		394.24
+131072		427.24
+262144		622.13
+524288		1022.97
+1048576		1496.08
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=1 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=5 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce -m 1:2048
+4		9.06
+8		6.87
+16		6.87
+32		7.13
+64		7.58
+128		8.74
+256		10.31
+512		12.97
+1024		21.54
+2048		27.60
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=1 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=6 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce -m 1:2048
+4		11.42
+8		8.41
+16		8.22
+32		9.23
+64		9.76
+128		11.01
+256		19.13
+512		16.26
+1024		14.63
+2048		18.62
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=2 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=1 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		13.10
+8		8.34
+16		9.64
+32		12.91
+64		14.74
+128		19.78
+256		16.55
+512		16.83
+1024		18.92
+2048		24.38
+4096		29.44
+8192		49.54
+16384		72.61
+32768		119.32
+65536		206.45
+131072		398.60
+262144		734.54
+524288		1381.55
+1048576		3997.04
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=2 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=2 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		11.69
+8		8.88
+16		8.21
+32		13.66
+64		13.32
+128		16.14
+256		22.12
+512		18.71
+1024		22.35
+2048		22.98
+4096		32.52
+8192		47.88
+16384		70.97
+32768		119.10
+65536		206.17
+131072		384.75
+262144		714.83
+524288		1413.48
+1048576		3999.98
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=2 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=5 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		8.91
+8		7.13
+16		6.93
+32		11.48
+64		11.77
+128		12.20
+256		14.02
+512		18.82
+1024		27.22
+2048		29.82
+4096		46.09
+8192		74.05
+16384		124.27
+32768		224.78
+65536		412.32
+131072		417.71
+262144		745.63
+524288		1428.91
+1048576		3921.96
+
+
+/home/tran.839/bin/mvapich2-master-29-jan-2021/bin/mpirun_rsh -export-all -np 224 --hostfile /home/tran.839/tuning/hostfiles/8-nodes-28-ppn-hostfile-28ppn-8nodes MV2_ENABLE_SKIP_TUNING_TABLE_SEARCH=0 MV2_INTER_ALLREDUCE_TUNING=2 MV2_INTER_ALLREDUCE_TUNING_TWO_LEVEL=1 MV2_INTRA_ALLREDUCE_TUNING=6 MV2_SMP_USE_CMA=1 MV2_USE_RDMA_CM=0 /home/tran.839/bin/mvapich2-master-29-jan-2021/libexec/osu-micro-benchmarks/mpi/collective/osu_allreduce
+4		11.48
+8		9.93
+16		8.33
+32		13.64
+64		14.66
+128		14.98
+256		23.49
+512		21.71
+1024		22.55
+2048		23.32
+4096		31.85
+8192		47.82
+16384		72.24
+32768		119.46
+65536		424.33
+131072		387.12
+262144		706.68
+524288		1374.66
+1048576		4015.17
+
+
+Finished.
