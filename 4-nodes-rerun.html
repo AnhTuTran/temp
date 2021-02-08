@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>report.html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      .container {
+       /* max-width: 500px;
+        padding-top: 100px;*/
+      }
+
+      /* Table cell background colors */
+      .good {
+	background-color: green;
+      }
+      .bad {
+	background-color: red;
+      }
+      .neutral {
+	background-color: gray;
+      }
+      .warning {
+	background-color: yellow;
+      }
+
+      th {
+	width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+
+      <h1>RI2 - Master vs. v2.3.5</h1>
+      <h2>February 08, 2021 -  4:47 PM</h2>
+      <p>The creator of the report can put other info here. A summary of the report, known issues, possible explanations of improvement/degradations seen, maybe the configure line used, etc. <br/><br/><b>HTML</b> <i>text</i> <font color='red'>formatting</font> is <u>allowed</u>.</p>
+
+      <table>
+	
+        <tr>
+	  <td>Old</td>
+	  <td>v2.3.5 ()</td>
+	</tr>
+	
+        <tr>
+	  <td>New</td>
+	  <td>master-Feb-8-21 ()</td>
+	</tr>
+	
+        <tr>
+	  <td>Arch</td>
+	  <td>RI2</td>
+	</tr>
+	
+        <tr>
+	  <td>HCA</td>
+	  <td>EDR</td>
+	</tr>
+	
+        <tr>
+	  <td>Channel(s)</td>
+	  <td>gen2_cma</td>
+	</tr>
+	
+        <tr>
+	  <td>PPN</td>
+	  <td>28</td>
+	</tr>
+	
+        <tr>
+	  <td>Nodes</td>
+	  <td>4</td>
+	</tr>
+	
+        <tr>
+	  <td>Iterations</td>
+	  <td>5</td>
+	</tr>
+	
+        <tr>
+	  <td>Author</td>
+	  <td>Tu Tran</td>
+	</tr>
+	
+      </table>
+
+      
+
+        <h4>4-nodes-rerun</h4>
+
+	
+	  
+
+	  <p>4 Nodes, 28 PPN (112 processes)</p>
+
+	    
+
+	      <table>
+		<tr>
+
+		  <th>collective/osu_allgather</th>
+
+		  
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1</b> <br> 12.46 <br> 12.17 <br> 2.34% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>2</b> <br> 10.25 <br> 8.27 <br> 19.37% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>4</b> <br> 10.33 <br> 8.56 <br> 17.15% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>8</b> <br> 8.9 <br> 9.06 <br> -1.8% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>16</b> <br> 9.31 <br> 9.71 <br> -4.34% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>32</b> <br> 15.71 <br> 10.92 <br> 30.49% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>64</b> <br> 13.91 <br> 14.03 <br> -0.88% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>128</b> <br> 24.34 <br> 24.93 <br> -2.42% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>256</b> <br> 40.85 <br> 44.95 <br> -10.06% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>512</b> <br> 63.82 <br> 73.38 <br> -14.97% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>1024</b> <br> 116.66 <br> 104.64 <br> 10.3% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>2048</b> <br> 132.57 <br> 140.28 <br> -5.82% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>4096</b> <br> 192.47 <br> 211.68 <br> -9.98% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>8192</b> <br> 1141.27 <br> 701.48 <br> 38.54% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>16384</b> <br> 1472.5 <br> 1378.5 <br> 6.38% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>32768</b> <br> 2419.41 <br> 2445.6 <br> -1.08% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>65536</b> <br> 4459.64 <br> 4395.8 <br> 1.43% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>131072</b> <br> 8238.74 <br> 8514.12 <br> -3.34% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>262144</b> <br> 15986.18 <br> 16389.24 <br> -2.52% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>524288</b> <br> 31887.49 <br> 32172.33 <br> -0.89% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1048576</b> <br> 65083.63 <br> 67163.24 <br> -3.2% 
+		      </td>
+
+		    
+
+		  
+
+		</tr>
+	      </table>
+
+	    
+
+	      <table>
+		<tr>
+
+		  <th>collective/osu_allreduce</th>
+
+		  
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>4</b> <br> 6.35 <br> 4.94 <br> 22.17% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>8</b> <br> 5.96 <br> 4.88 <br> 18.1% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>16</b> <br> 5.99 <br> 4.98 <br> 16.77% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>32</b> <br> 6.58 <br> 5.31 <br> 19.25% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>64</b> <br> 6.12 <br> 5.0 <br> 18.26% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>128</b> <br> 6.55 <br> 6.38 <br> 2.5% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>256</b> <br> 7.22 <br> 7.06 <br> 2.22% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>512</b> <br> 8.27 <br> 7.56 <br> 8.59% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>1024</b> <br> 10.09 <br> 9.33 <br> 7.55% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>2048</b> <br> 12.6 <br> 12.3 <br> 2.38% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>4096</b> <br> 25.42 <br> 26.8 <br> -5.44% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>8192</b> <br> 37.73 <br> 36.65 <br> 2.86% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>16384</b> <br> 54.45 <br> 51.48 <br> 5.45% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>32768</b> <br> 79.05 <br> 78.55 <br> 0.63% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>65536</b> <br> 132.09 <br> 133.99 <br> -1.44% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>131072</b> <br> 236.75 <br> 241.88 <br> -2.17% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>262144</b> <br> 451.0 <br> 457.5 <br> -1.44% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>524288</b> <br> 951.48 <br> 875.02 <br> 8.04% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1048576</b> <br> 2053.7 <br> 1958.96 <br> 4.61% 
+		      </td>
+
+		    
+
+		  
+
+		</tr>
+	      </table>
+
+	    
+
+	      <table>
+		<tr>
+
+		  <th>collective/osu_bcast</th>
+
+		  
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>1</b> <br> 4.2 <br> 3.41 <br> 18.89% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>2</b> <br> 2.19 <br> 2.14 <br> 2.2% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>4</b> <br> 2.21 <br> 2.14 <br> 2.99% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>8</b> <br> 2.19 <br> 2.12 <br> 3.28% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>16</b> <br> 2.17 <br> 2.13 <br> 2.02% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>32</b> <br> 2.27 <br> 2.21 <br> 2.47% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>64</b> <br> 2.47 <br> 2.45 <br> 0.81% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>128</b> <br> 2.53 <br> 2.53 <br> -0.16% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>256</b> <br> 2.77 <br> 2.75 <br> 0.72% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>512</b> <br> 2.96 <br> 3.02 <br> -2.09% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1024</b> <br> 3.38 <br> 3.37 <br> 0.18% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>2048</b> <br> 4.6 <br> 4.77 <br> -3.61% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>4096</b> <br> 6.28 <br> 6.62 <br> -5.41% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>8192</b> <br> 8.22 <br> 9.03 <br> -9.8% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>16384</b> <br> 11.4 <br> 42.11 <br> -269.52% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>32768</b> <br> 19.02 <br> 18.29 <br> 3.84% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>65536</b> <br> 30.45 <br> 32.15 <br> -5.61% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>131072</b> <br> 55.17 <br> 57.72 <br> -4.62% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>262144</b> <br> 106.45 <br> 109.14 <br> -2.53% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>524288</b> <br> 212.38 <br> 208.88 <br> 1.65% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1048576</b> <br> 449.15 <br> 434.11 <br> 3.35% 
+		      </td>
+
+		    
+
+		  
+
+		</tr>
+	      </table>
+
+	    
+
+	      <table>
+		<tr>
+
+		  <th>collective/osu_gather</th>
+
+		  
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>1</b> <br> 1.28 <br> 1.73 <br> -35.26% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>2</b> <br> 1.01 <br> 1.04 <br> -2.96% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>4</b> <br> 1.03 <br> 1.07 <br> -3.88% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>8</b> <br> 1.16 <br> 1.19 <br> -2.75% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>16</b> <br> 1.12 <br> 1.22 <br> -8.54% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>32</b> <br> 1.16 <br> 1.27 <br> -9.67% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>64</b> <br> 1.21 <br> 1.36 <br> -12.23% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>128</b> <br> 1.33 <br> 1.49 <br> -12.2% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>256</b> <br> 1.71 <br> 1.68 <br> 2.22% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>512</b> <br> 2.21 <br> 2.23 <br> -0.72% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1024</b> <br> 3.95 <br> 3.9 <br> 1.37% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>2048</b> <br> 5.64 <br> 5.88 <br> -4.22% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>4096</b> <br> 8.97 <br> 9.03 <br> -0.67% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>8192</b> <br> 14.81 <br> 15.43 <br> -4.15% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>16384</b> <br> 24.01 <br> 25.95 <br> -8.11% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>32768</b> <br> 42.28 <br> 45.25 <br> -7.01% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>65536</b> <br> 101.24 <br> 103.88 <br> -2.61% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>131072</b> <br> 209.87 <br> 194.33 <br> 7.4% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>262144</b> <br> 483.38 <br> 439.21 <br> 9.14% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>524288</b> <br> 1182.61 <br> 1018.06 <br> 13.91% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>1048576</b> <br> 2597.56 <br> 2407.55 <br> 7.31% 
+		      </td>
+
+		    
+
+		  
+
+		</tr>
+	      </table>
+
+	    
+
+	      <table>
+		<tr>
+
+		  <th>collective/osu_reduce</th>
+
+		  
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>4</b> <br> 0.32 <br> 0.35 <br> -9.37% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>8</b> <br> 0.3 <br> 0.33 <br> -9.27% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>16</b> <br> 0.31 <br> 0.33 <br> -7.14% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>32</b> <br> 0.31 <br> 0.34 <br> -7.64% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>64</b> <br> 0.33 <br> 0.35 <br> -4.22% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>128</b> <br> 0.37 <br> 0.37 <br> 0.0% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>256</b> <br> 0.42 <br> 0.44 <br> -4.76% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>512</b> <br> 0.53 <br> 0.53 <br> -1.14% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1024</b> <br> 0.67 <br> 0.7 <br> -3.56% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>2048</b> <br> 1.25 <br> 1.33 <br> -6.56% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>4096</b> <br> 1.89 <br> 1.97 <br> -4.67% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>8192</b> <br> 3.16 <br> 3.25 <br> -2.79% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>16384</b> <br> 15.27 <br> 18.78 <br> -22.94% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>32768</b> <br> 28.59 <br> 29.5 <br> -3.17% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>65536</b> <br> 52.42 <br> 42.75 <br> 18.44% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>131072</b> <br> 86.63 <br> 110.0 <br> -26.98% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>262144</b> <br> 171.35 <br> 216.1 <br> -26.12% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>524288</b> <br> 381.47 <br> 418.61 <br> -9.73% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>1048576</b> <br> 1805.94 <br> 1166.3 <br> 35.42% 
+		      </td>
+
+		    
+
+		  
+
+		</tr>
+	      </table>
+
+	    
+
+	      <table>
+		<tr>
+
+		  <th>collective/osu_scatter</th>
+
+		  
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>1</b> <br> 4.45 <br> 5.3 <br> -18.96% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>2</b> <br> 3.75 <br> 3.78 <br> -0.75% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>4</b> <br> 4.15 <br> 3.81 <br> 8.19% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="bad"
+			
+		      >
+			<b>8</b> <br> 4.16 <br> 4.44 <br> -6.68% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>16</b> <br> 4.44 <br> 4.64 <br> -4.6% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>32</b> <br> 6.27 <br> 5.06 <br> 19.3% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>64</b> <br> 5.6 <br> 5.65 <br> -0.82% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>128</b> <br> 8.27 <br> 6.91 <br> 16.44% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>256</b> <br> 9.27 <br> 9.4 <br> -1.45% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>512</b> <br> 16.29 <br> 14.13 <br> 13.24% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>1024</b> <br> 22.75 <br> 20.53 <br> 9.75% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>2048</b> <br> 39.22 <br> 34.19 <br> 12.82% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>4096</b> <br> 46.66 <br> 48.2 <br> -3.3% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>8192</b> <br> 93.3 <br> 65.17 <br> 30.15% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>16384</b> <br> 100.58 <br> 80.12 <br> 20.33% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>32768</b> <br> 149.61 <br> 148.47 <br> 0.76% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>65536</b> <br> 311.14 <br> 302.47 <br> 2.79% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>131072</b> <br> 615.29 <br> 602.49 <br> 2.08% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>262144</b> <br> 1307.7 <br> 1214.15 <br> 7.15% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="good"
+			
+		      >
+			<b>524288</b> <br> 2856.69 <br> 2696.73 <br> 5.6% 
+		      </td>
+
+		    
+
+		      
+		      
+		      
+
+		      <td
+			
+			      class="neutral"
+			
+		      >
+			<b>1048576</b> <br> 5959.88 <br> 5748.38 <br> 3.55% 
+		      </td>
+
+		    
+
+		  
+
+		</tr>
+	      </table>
+
+	    
+
+	  
+	
+
+      
+
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
