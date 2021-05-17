@@ -1,0 +1,6 @@
+Sorting an array of 65536
+Local array size 256
+#procs 256
+#NUM_RADIX_BITS 11
+Radix sort took: 0.93
+Data sorted
