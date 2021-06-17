@@ -1,0 +1,7 @@
+128 [23153733564160] INFO mrtehelpers.mrteenv <> - Product libs directory: /global/home/users/tutran/intel/oneapi/vtune/2021.4.0/lib64
+128 [23153733564160] INFO mrtehelpers.mrteenv <> - File mask: amplxe_tpssmrte_clrprof*
+150 [23153733564160] INFO mrtehelpers.mrteenv <> - File name: lib
+150 [23153733564160] INFO mrtehelpers.mrteenv <> - File mask: amplxe_tpssmrte_clrprof*
+161 [23153733564160] INFO mrtehelpers.mrteenv <> - File name: lib
+162 [23153733564160] ERROR mrtehelpers.mrteenv <> - Failed to init shared librarylib located at /global/home/users/tutran/intel/oneapi/vtune/2021.4.0/lib64, at file: vcs/mrtehelpers3/src/mrteenv/mrte_profiling_initializer.cpp:485
+162 [23153733564160] ERROR mrtehelpers.mrteenv <> - CLR support is disabled because profiler GUID is empty, at file: vcs/mrtehelpers3/src/mrteenv/mrte_profiling_initializer.cpp:308
