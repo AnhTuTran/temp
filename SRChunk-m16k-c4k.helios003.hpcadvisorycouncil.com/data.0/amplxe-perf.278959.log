@@ -1,0 +1,52 @@
+Using CPUID GenuineIntel-6-55-4
+Compression enabled, disabling build id collection at the end of the session.
+nr_cblocks: 0
+affinity: SYS
+mmap flush: 1
+comp level: 1
+Problems creating module maps, continuing anyway...
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+mmap size 528384B
+thread 0 monitor: 0-39 allowed: any
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+couldn't open /proc/1/task/1/maps
+couldn't open /proc/276738/task/276738/maps
+couldn't open /proc/278909/task/278909/maps
+couldn't open /proc/3375/task/3375/maps
+couldn't open /proc/3423/task/3423/maps
+couldn't open /proc/3602/task/3602/maps
+couldn't open /proc/3611/task/3611/maps
+couldn't open /proc/3651/task/3651/maps
+couldn't open /proc/3653/task/3653/maps
+couldn't open /proc/3656/task/3656/maps
+couldn't open /proc/3660/task/3660/maps
+couldn't open /proc/3663/task/3663/maps
+couldn't open /proc/3901/task/3901/maps
+couldn't open /proc/4281/task/4281/maps
+couldn't open /proc/4284/task/4284/maps
+couldn't open /proc/4293/task/4293/maps
+couldn't open /proc/4304/task/4304/maps
+couldn't open /proc/4315/task/4315/maps
+couldn't open /proc/4357/task/4357/maps
+couldn't open /proc/5504/task/5504/maps
+couldn't open /proc/5505/task/5505/maps
+couldn't open /proc/5509/task/5509/maps
+couldn't open /proc/5513/task/5513/maps
+couldn't open /proc/5514/task/5514/maps
+cmd_pipe: /tmp/amplxe-tmp-tutran/perf-pipe-278941-971693076131868
+
+278960:perf-sync:ready:SYS=485716832720420
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.259 MB /tmp/amplxe-tmp-tutran/amplxe-res-278941-971691809519312/data.0/temp.dryrun.perf, compressed (original 0.008 MB, ratio is 5.345) ]
