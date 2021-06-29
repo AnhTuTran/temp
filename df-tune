@@ -1,0 +1,279 @@
+diff --git a/osu_benchmarks/mpi/collective/osu_alltoall.c b/osu_benchmarks/mpi/collective/osu_alltoall.c
+index 404aefb..d3bdee1 100644
+--- a/osu_benchmarks/mpi/collective/osu_alltoall.c
++++ b/osu_benchmarks/mpi/collective/osu_alltoall.c
+@@ -37,6 +37,7 @@ main (int argc, char *argv[])
+     MPI_CHECK(MPI_Init(&argc, &argv));
+     MPI_CHECK(MPI_Comm_rank(MPI_COMM_WORLD, &rank));
+     MPI_CHECK(MPI_Comm_size(MPI_COMM_WORLD, &numprocs));
++    i = 0;
+ 
+     switch (po_ret) {
+         case PO_BAD_USAGE:
+@@ -123,6 +124,10 @@ main (int argc, char *argv[])
+     free_buffer(sendbuf, options.accel);
+     free_buffer(recvbuf, options.accel);
+ 
++/*    err=MPI_T_finalize();
++    if(err!=MPI_SUCCESS)
++        fprintf(stderr,"ERROR in MPI_T finalize (%d)",err);*/
++
+     MPI_CHECK(MPI_Finalize());
+ 
+     if (NONE != options.accel) {
+diff --git a/src/mpi/coll/alltoall.c b/src/mpi/coll/alltoall.c
+index de7ed94..3846c1e 100644
+--- a/src/mpi/coll/alltoall.c
++++ b/src/mpi/coll/alltoall.c
+@@ -7,6 +7,8 @@
+ 
+ #include "mpiimpl.h"
+ #include "helper_fns.h"
++#include "alltoall_tuning.h"
++#include "common_tuning.h"
+ 
+ /*
+ === BEGIN_MPI_T_CVAR_INFO_BLOCK ===
+@@ -53,6 +55,16 @@ cvars:
+        algorithms. Setting it to 0 causes all irecvs/isends to be
+        posted at once
+ 
++   - name      : MPIR_CVAR_ALLTOALL_TUNE
++     category  : COLLECTIVE
++     type      : int
++     default   : 0
++     class     : device
++     verbosity : MPI_T_VERBOSITY_USER_BASIC
++     scope     : MPI_T_SCOPE_ALL_EQ
++     description : >-
++        alltoall algorithm selection
++
+ === END_MPI_T_CVAR_INFO_BLOCK ===
+ */
+ 
+@@ -589,6 +601,7 @@ int MPIR_Alltoall_impl(const void *sendbuf, int sendcount, MPI_Datatype sendtype
+ 
+     if (comm_ptr->coll_fns != NULL && comm_ptr->coll_fns->Alltoall != NULL) {
+ 	/* --BEGIN USEREXTENSION-- */
++    fprintf(stderr,"MPIR_Alltoall_impl \n");
+ 	mpi_errno = comm_ptr->coll_fns->Alltoall(sendbuf, sendcount, sendtype,
+                                                  recvbuf, recvcount, recvtype,
+                                                  comm_ptr, errflag);
+@@ -651,6 +664,7 @@ int MPI_Alltoall(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
+     
+     MPID_THREAD_CS_ENTER(GLOBAL, MPIR_THREAD_GLOBAL_ALLFUNC_MUTEX);
+     MPID_MPI_COLL_FUNC_ENTER(MPID_STATE_MPI_ALLTOALL);
++    fprintf(stderr,"CVAR VAL %d \n", MPIR_CVAR_ALLTOALL_TUNE);
+ 
+     /* Validate parameters, especially handles needing to be converted */
+ #   ifdef HAVE_ERROR_CHECKING
+@@ -717,7 +731,33 @@ int MPI_Alltoall(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
+ #   endif /* HAVE_ERROR_CHECKING */
+ 
+     /* ... body of routine ...  */
+-
++    //comm_ptr->coll_fns->Alltoall = ;
++    int cvar_val = MPIR_CVAR_ALLTOALL_TUNE;
++    switch (cvar_val) {
++        case ALLTOALL_BRUCK_MV2:
++            comm_ptr->coll_fns->Alltoall =
++                &MPIR_Alltoall_bruck_MV2;
++            break;
++        case ALLTOALL_RD_MV2:
++            comm_ptr->coll_fns->Alltoall =
++                &MPIR_Alltoall_RD_MV2;
++            break;
++        case ALLTOALL_SCATTER_DEST_MV2:
++            comm_ptr->coll_fns->Alltoall =
++                &MPIR_Alltoall_Scatter_dest_MV2;
++            break;
++        case ALLTOALL_PAIRWISE_MV2:
++            comm_ptr->coll_fns->Alltoall =
++                &MPIR_Alltoall_pairwise_MV2;
++            break;
++        case ALLTOALL_INPLACE_MV2:
++            comm_ptr->coll_fns->Alltoall =
++                &MPIR_Alltoall_inplace_MV2;
++            break;
++        default:
++            comm_ptr->coll_fns->Alltoall =
++                &MPIR_Alltoall_bruck_MV2;
++    }
+     mpi_errno = MPIR_Alltoall_impl(sendbuf, sendcount, sendtype, recvbuf, recvcount, recvtype, comm_ptr, &errflag);
+     if (mpi_errno) goto fn_fail;
+ 
+diff --git a/src/mpi/coll/alltoall_osu.c b/src/mpi/coll/alltoall_osu.c
+index a156841..b046907 100644
+--- a/src/mpi/coll/alltoall_osu.c
++++ b/src/mpi/coll/alltoall_osu.c
+@@ -577,6 +577,7 @@ int MPIR_Alltoall_Scatter_dest_MV2(
+       return MPI_SUCCESS;
+     }
+     
++    fprintf(stderr, "in MPIR_Alltoall_Scatter_dest_MV2 \n");
+     MPID_Datatype_get_size_macro(sendtype, sendtype_size);
+     nbytes = sendtype_size * sendcount;
+ 
+@@ -705,7 +706,9 @@ int MPIR_Alltoall_pairwise_MV2(
+     int mpi_errno_ret = MPI_SUCCESS;
+     int src, dst, rank;
+     MPI_Status status;
+-    
++
++    fprintf(stderr,"in MPIR_Alltoall_pairwise_MV2 \n");
++
+     if (recvcount == 0) 
+     {
+       MPIR_TIMER_END(coll,alltoall,pw);
+diff --git a/src/mpid/ch3/channels/nemesis/netmod/ofi/ofi_tagged_template.c b/src/mpid/ch3/channels/nemesis/netmod/ofi/ofi_tagged_template.c
+index 94ce415..c47bd85 100644
+--- a/src/mpid/ch3/channels/nemesis/netmod/ofi/ofi_tagged_template.c
++++ b/src/mpid/ch3/channels/nemesis/netmod/ofi/ofi_tagged_template.c
+@@ -237,9 +237,9 @@ ADD_SUFFIX(send_lightweight)(struct MPIDI_VC *vc,
+ #elif API_SET == API_SET_2
+     uint64_t match_bits = init_sendtag_2(comm->context_id + context_offset, tag, MPID_NORMAL_SEND);
+ #endif
+-
++     fprintf(stderr, "send_lightweight mpi_errno %d\n", mpi_errno);
+     MPIU_Assert(data_sz <= gl_data.max_buffered_send);
+-
++    fprintf(stderr, "send_lightweight mpi_errno222 %d\n", mpi_errno);
+ #if API_SET == API_SET_1
+     FI_RC_RETRY(fi_tinject(gl_data.endpoint,
+ #elif API_SET == API_SET_2
+@@ -252,6 +252,7 @@ ADD_SUFFIX(send_lightweight)(struct MPIDI_VC *vc,
+ #endif
+                            VC_OFI(vc)->direct_addr,
+                            match_bits), tinject);
++    fprintf(stderr, "send_lightweight mpi_errno333 %d\n", mpi_errno);
+   fn_exit:
+     return mpi_errno;
+   fn_fail:
+@@ -291,15 +292,16 @@ ADD_SUFFIX(do_isend)(struct MPIDI_VC *vc,
+     {
+         if (should_create_req == MPID_CREATE_REQ)
+             MPID_nem_ofi_create_req_lw(request, 1);
+-
++        fprintf(stderr, "send_lightweight\n");
+         mpi_errno = ADD_SUFFIX(send_lightweight)(vc, (char *) buf + dt_true_lb, data_sz,
+                                                  dest, tag, comm, context_offset);
+     }
+-    else
++    else {
++        fprintf(stderr, "send_normal\n");
+         mpi_errno = ADD_SUFFIX(send_normal)(vc, buf, count, datatype, dest, tag, comm,
+                                 context_offset, request, dt_contig,
+                                 data_sz, dt_ptr, dt_true_lb, send_type);
+-
++}
+     END_FUNC_RC(MPID_STATE_DO_ISEND);
+ }
+ 
+@@ -329,7 +331,7 @@ int ADD_SUFFIX(MPID_nem_ofi_isend)(struct MPIDI_VC *vc,
+                        MPI_Datatype datatype,
+                        int dest,
+                        int tag, MPID_Comm * comm, int context_offset, struct MPID_Request **request)
+-{
++{   fprintf(stderr, "ADD_SUFFIX(MPID_nem_ofi_isend)\n");
+     int mpi_errno = MPI_SUCCESS;
+     BEGIN_FUNC(FCNAME);
+     mpi_errno = ADD_SUFFIX(do_isend)(vc, buf, count, datatype, dest,
+diff --git a/src/mpid/ch3/src/mpid_isend.c b/src/mpid/ch3/src/mpid_isend.c
+index f8398a3..99191f2 100644
+--- a/src/mpid/ch3/src/mpid_isend.c
++++ b/src/mpid/ch3/src/mpid_isend.c
+@@ -46,8 +46,9 @@ extern MPID_Request *mv2_dummy_request;
+ #define FCNAME MPL_QUOTE(FUNCNAME)
+ int MPID_Isend(const void * buf, MPI_Aint count, MPI_Datatype datatype, int rank,
+ 	       int tag, MPID_Comm * comm, int context_offset,
+-               MPID_Request ** request)
++                MPID_Request ** request)
+ {
++    fprintf(stderr, "MPID_Isend\n");
+ 
+     MPIR_T_PVAR_COUNTER_BUCKET_INC(MV2,mv2_pt2pt_mpid_isend,count,datatype);
+ 
+@@ -82,7 +83,7 @@ int MPID_Isend(const void * buf, MPI_Aint count, MPI_Datatype datatype, int rank
+         MPIU_DBG_MSG(CH3_OTHER,VERBOSE,"Communicator revoked. MPID_ISEND returning");
+         MPIR_ERR_SETANDJUMP(mpi_errno,MPIX_ERR_REVOKED,"**revoked");
+     }
+-    
++   fprintf(stderr, "MPID_Isend11\n"); 
+     if (rank == comm->rank && comm->comm_kind != MPID_INTERCOMM)
+     {
+ #if defined (CHANNEL_PSM)
+@@ -96,25 +97,26 @@ int MPID_Isend(const void * buf, MPI_Aint count, MPI_Datatype datatype, int rank
+ #if defined (CHANNEL_PSM)
+ skip_self_send:
+ #endif
+-
++fprintf(stderr, "MPID_Isend22\n");
+     if (rank != MPI_PROC_NULL) {
+         MPIDI_Comm_get_vc_set_active(comm, rank, &vc);
+ #ifdef ENABLE_COMM_OVERRIDES
+         /* this needs to come before the sreq is created, since the override
+          * function is responsible for creating its own request */
+         if (vc->comm_ops && vc->comm_ops->isend)
+-        {
++        {   fprintf(stderr, "vc->comm_ops->isend\n");
+             mpi_errno = vc->comm_ops->isend( vc, buf, count, datatype, rank, tag, comm, context_offset, &sreq);
++            fprintf(stderr, "vc->comm_ops->isend mpi_errno %d\n", mpi_errno);
+             goto fn_exit;
+         }
+ #endif
+     }
+-
++fprintf(stderr, "MPID_Isend33\n");
+ #ifndef CHANNEL_MRAIL
+     MPIDI_Request_create_sreq(sreq, mpi_errno, goto fn_exit);
+     MPIDI_Request_set_type(sreq, MPIDI_REQUEST_TYPE_SEND);
+ #endif
+-
++fprintf(stderr, "MPID_Isend44\n");
+     if (rank == MPI_PROC_NULL)
+     {
+ #ifdef CHANNEL_MRAIL
+@@ -125,7 +127,7 @@ skip_self_send:
+ #endif
+         goto fn_exit;
+     }
+-
++fprintf(stderr, "MPID_Isend55\n");
+     MPIDI_Datatype_get_info(count, datatype, dt_contig, data_sz, dt_ptr, 
+ 			                dt_true_lb);
+ #ifdef _ENABLE_CUDA_
+@@ -207,7 +209,7 @@ skip_self_send:
+ 
+ 	goto fn_exit;
+     }
+-
++fprintf(stderr, "MPID_Isend666\n");
+ #if defined (CHANNEL_PSM)
+     if(HANDLE_GET_KIND(datatype) != HANDLE_KIND_BUILTIN) {
+         sreq->dev.datatype_ptr = dt_ptr;
+@@ -294,7 +296,7 @@ skip_self_send:
+ eager_send:
+ #endif /* _OSU_PSM */
+         if (dt_contig) 
+-        {
++        {fprintf(stderr, "MPID_Isend777\n");
+             mpi_errno = MPIDI_CH3_EagerContigIsend( &sreq, 
+                                 MPIDI_CH3_PKT_EAGER_SEND,
+                                 (char*)buf + dt_true_lb, 
+@@ -306,6 +308,7 @@ eager_send:
+ #if defined (CHANNEL_PSM)
+             sreq->psm_flags |= PSM_NON_BLOCKING_SEND;
+ #endif
++         fprintf(stderr, "MPID_Isend8888\n");
+             mpi_errno = MPIDI_CH3_EagerNoncontigSend( &sreq, 
+                                                           MPIDI_CH3_PKT_EAGER_SEND,
+                                                           buf, count, datatype,
+@@ -328,7 +331,7 @@ rndv_send:
+ #endif
+ 	/* Note that the sreq was created above */
+ 	MPIDI_Request_set_msg_type( sreq, MPIDI_REQUEST_RNDV_MSG );
+-
++fprintf(stderr, "MPID_Isend999\n");
+ 	mpi_errno = vc->rndvSend_fn( &sreq, buf, count, datatype, dt_contig,
+                                      data_sz, dt_true_lb, rank, tag, comm, 
+                                      context_offset );
